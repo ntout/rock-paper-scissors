@@ -80,6 +80,15 @@ class Game extends React.Component {
             })
         } else console.log("Already locked or havent picked one yet")
     }
+
+    newGame() {
+        this.setState({
+            choice: "",
+            computer: "",
+            picked: false,
+            locked: false
+        });
+    }
     
 
     render() {
@@ -91,28 +100,31 @@ class Game extends React.Component {
         if (!this.state.locked) {
             status = "Lock in Answer";
             compChoice = "Thinking..."
+            result = this.state.result
         } else {
             status = "Answer Locked in";
             compChoice = this.state.computer;
             result = this.state.result;
             myChoice = this.state.choice;
         }
-
+        
+        
         if (myChoice === "Rock" && compChoice === "Scissors") {
-            result = "Win";
+            result['playerWins'] = result['playerWins'] + 1;
         } else if (myChoice === "Rock" && compChoice === "Paper") {
-            result = "Lose";
+            result['compWins'] = result['compWins'] + 1;
         } else if (myChoice === "Scissors" && compChoice === "Paper") {
-            result = "Win";
+            result['playerWins'] = result['playerWins'] + 1;
         } else if (myChoice === "Scissors" && compChoice === "Rock") {
-            result = "Lose";
+            result['compWins'] = result['compWins'] + 1;
         } else if (myChoice === "Paper" && compChoice === "Rock") {
-            result = "Win";
+            result['playerWins'] = result['playerWins'] + 1;
         } else if (myChoice === "Paper" && compChoice === "Scissors") {
-            result = "Lose";
+            result['compWins'] = result['compWins'] + 1;
         } else if (myChoice === compChoice) {
-            result = "Draw";
+            //result = "Draw";
         }
+    
         
 
         return (
@@ -125,7 +137,12 @@ class Game extends React.Component {
                 <button onClick={() => this.lockAnswer()}>{status}</button>
 
                 <h3>Computer: {compChoice}</h3>
-                <h3>Result: { result }</h3>
+                <h3>Score:</h3>
+                <div>
+                    <p>Player: {result['playerWins']}</p>
+                    <p>Computer: {result['compWins']}</p>
+                </div>
+                <button onClick={() => this.newGame()}>Next game</button>
             </div>
         )
     }
