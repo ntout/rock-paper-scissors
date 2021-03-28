@@ -44,7 +44,10 @@ class Game extends React.Component {
             computer: "",
             picked: false,
             locked: false,
-            result: ""
+            result: {
+                compWins: 0,
+                playerWins: 0
+            }
         };
     }
 
@@ -75,41 +78,9 @@ class Game extends React.Component {
                 locked: true, 
                 computer: this.computerPickRPS()
             })
-            // this.getResult()
         } else console.log("Already locked or havent picked one yet")
     }
     
-    // setPlayerWin(result) {
-    //     this.setState({
-    //         result: result
-    //     })
-    // }
-
-
-    // getResult() {
-    //     let house = this.state.computer;
-    //     let myChoice = this.state.choice;
-
-    //     console.log("myChoice: " + myChoice);
-    //     console.log("house: " + house);
-        
-        
-    //     if (myChoice === "Rock" && house === "Scissors") {
-    //       this.setPlayerWin("win");
-    //     } else if (myChoice === "Rock" && house === "Paper") {
-    //       this.setPlayerWin("lose");
-    //     } else if (myChoice === "Scissors" && house === "Paper") {
-    //       this.setPlayerWin("win");
-    //     } else if (myChoice === "Scissors" && house === "Rock") {
-    //       this.setPlayerWin("lose");
-    //     } else if (myChoice === "Paper" && house === "Rock") {
-    //       this.setPlayerWin("win");
-    //     } else if (myChoice === "Paper" && house === "Scissors") {
-    //       this.setPlayerWin("lose");
-    //     } else {
-    //       this.setPlayerWin("draw");
-    //     }
-    //   };
 
     render() {
 
